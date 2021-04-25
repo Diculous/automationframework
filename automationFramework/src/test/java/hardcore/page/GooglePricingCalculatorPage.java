@@ -209,6 +209,9 @@ public class GooglePricingCalculatorPage {
     public TenMinutesMailPage switchToMailPage() {
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
+        enableGPUCheckbox.sendKeys(Keys.ARROW_DOWN);
+        enableGPUCheckbox.sendKeys(Keys.ARROW_DOWN);
+        enableGPUCheckbox.sendKeys(Keys.ARROW_DOWN);
         return tenMinutesMailPage;
     }
 
