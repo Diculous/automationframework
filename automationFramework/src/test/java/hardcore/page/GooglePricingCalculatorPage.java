@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class GooglePricingCalculatorPage {
 
@@ -109,10 +110,20 @@ public class GooglePricingCalculatorPage {
     return this; }
 
     public GooglePricingCalculatorPage findBaseInstanceType() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         waitForElementIsClickable(driver, baseInstanceType).click();
     return this; }
 
     public GooglePricingCalculatorPage selectBaseInstanceType() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         waitForElementIsClickable(driver, baseInstanceTypeSelect).click();
     return this; }
 
