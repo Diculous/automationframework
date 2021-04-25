@@ -116,6 +116,9 @@ public class GooglePricingCalculatorPage {
             e.printStackTrace();
         }
         waitForElementIsClickable(driver, baseInstanceType).click();
+        baseInstanceType.sendKeys(Keys.ARROW_DOWN);
+        baseInstanceType.sendKeys(Keys.ARROW_DOWN);
+        baseInstanceType.sendKeys(Keys.ARROW_DOWN);
     return this; }
 
     public GooglePricingCalculatorPage selectBaseInstanceType() {
