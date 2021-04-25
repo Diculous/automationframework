@@ -131,9 +131,6 @@ public class GooglePricingCalculatorPage {
     return this; }
 
     public GooglePricingCalculatorPage findAccuarteInstanceType() {
-        accurateInstanceType.sendKeys(Keys.ARROW_DOWN);
-        accurateInstanceType.sendKeys(Keys.ARROW_DOWN);
-        accurateInstanceType.sendKeys(Keys.ARROW_DOWN);
         accurateInstanceType.click();
     return this; }
 
