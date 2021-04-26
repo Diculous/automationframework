@@ -205,7 +205,11 @@ public class GooglePricingCalculatorPage {
         return this; }
 
     public GooglePricingCalculatorPage sendEmail() {
-        sendEmail.sendKeys(Keys.ARROW_DOWN);
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         sendEmail.sendKeys(Keys.ARROW_DOWN);
         waitForElementIsClickable(driver, sendEmail);
         sendEmail.click();
