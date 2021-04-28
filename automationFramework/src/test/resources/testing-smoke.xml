@@ -2,8 +2,8 @@
 
 <suite name="Smoke" verbose="1">
     <test name="GooglePricingTest">
-        <packages>
-            <package name="com.epam.automationtraining.framework.hardcore.test.GooglePricingCalculatorSendResultsByEmailTest" />
-        </packages>
+        <classes>
+            <class name="hardcore.test.GooglePricingCalculatorSendResultsByEmailTest" />
+        </classes>
     </test>
 </suite>

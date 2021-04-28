@@ -1,9 +1,6 @@
 package hardcore.page;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,9 +36,6 @@ public class GooglePricingCalculatorPage {
     @FindBy(id = "select_90")
     private WebElement baseInstanceType;
 
-    @FindBy(id = "select_option_190")
-    private WebElement baseInstanceTypeSelect;
-
     @FindBy(id = "select_92")
     private WebElement accurateInstanceType;
 
@@ -72,14 +66,8 @@ public class GooglePricingCalculatorPage {
     @FindBy(id = "select_94")
     private WebElement location;
 
-    @FindBy(id = "select_option_219")
-    private WebElement selectLocation;
-
     @FindBy(id = "select_101")
     private WebElement committedUsage;
-
-    @FindBy(id = "select_option_99")
-    private WebElement selectCommittedUsage;
 
     @FindBy(id = "email_quote")
     private WebElement email;
@@ -111,7 +99,7 @@ public class GooglePricingCalculatorPage {
 
     public GooglePricingCalculatorPage findBaseInstanceType() {
         try {
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -121,13 +109,14 @@ public class GooglePricingCalculatorPage {
         baseInstanceType.sendKeys(Keys.ARROW_DOWN);
     return this; }
 
-    public GooglePricingCalculatorPage selectBaseInstanceType() {
+    public GooglePricingCalculatorPage selectBaseInstanceType(String baseType) {
         try {
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        waitForElementIsClickable(driver, baseInstanceTypeSelect).click();
+        WebElement type = driver.findElements(By.xpath("//div[text()[contains(.,'" + baseType + "')]]")).get(0);
+        waitForElementIsClickable(driver, type).click();
     return this; }
 
     public GooglePricingCalculatorPage findAccuarteInstanceType() {
@@ -173,16 +162,18 @@ public class GooglePricingCalculatorPage {
         location.click();
     return this; }
 
-    public GooglePricingCalculatorPage selectLocation() {
-        waitForElementIsClickable(driver, selectLocation).click();
+    public GooglePricingCalculatorPage selectLocation(String location) {
+        WebElement selectedLocation = driver.findElements(By.xpath("//div[text()[contains(.,'" + location + "')]]")).get(3);
+        waitForElementIsClickable(driver, selectedLocation).click();
     return this; }
 
     public GooglePricingCalculatorPage findCommittedUsage() {
         committedUsage.click();
     return this; }
 
-    public GooglePricingCalculatorPage selectCommittedUsage() {
-        waitForElementIsClickable(driver, selectCommittedUsage).click();
+    public GooglePricingCalculatorPage selectCommittedUsage(String usage) {
+        WebElement committed = driver.findElements(By.xpath("//div[text()[contains(.,'" + usage + "')]]")).get(1);
+        waitForElementIsClickable(driver, committed).click();
     return this; }
 
     public GooglePricingCalculatorPage submitFilledForm() {

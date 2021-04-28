@@ -1,8 +1,9 @@
 package hardcore.test;
 
 import hardcore.driver.DriverSingleton;
+import hardcore.model.Engine;
 import hardcore.page.GooglePricingCalculatorPage;
-import hardcore.service.TestDataReader;
+import hardcore.service.EngineCreator;
 import hardcore.util.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -45,7 +46,7 @@ import org.testng.annotations.Test;
  * +webdrivermanager для управления коннекторам к браузерам
  * +Page Object / Page Factory для абстракций страниц
  * +-Модель для бизнес-объектов необходимых сущностей
- * +properties файлы с тестовыми данным для разных окружений (как минимум 2)
+ * +properties файлы с тестовыми данным для разных окружений (как минимум 2) +++4 строки
  * +xml suites для smoke тестов и всех тестов
  * +При падении теста должен быть сделан скриншот с датой и временем
  * Фреймворк должен иметь возможность запуска с Jenkins и параметризацией браузера, тест suite, environment.
@@ -63,7 +64,7 @@ public class GooglePricingCalculatorSendResultsByEmailTest {
 
     WebDriver driver;
     GooglePricingCalculatorPage page;
-    final String INSTANCES = "testdata.instances.amount";
+    Engine engine = EngineCreator.createEngineFromProperties();
 
     @BeforeClass
     public void browserSetup() {
@@ -76,9 +77,9 @@ public class GooglePricingCalculatorSendResultsByEmailTest {
 
             page.initSearch("Google Cloud Platform Pricing Calculator")
                 .clickOnFirstResult()
-                .fillInstancesAmount(TestDataReader.getTestData(INSTANCES))
+                .fillInstancesAmount(engine.getNumberOfInstances())
                 .findBaseInstanceType()
-                .selectBaseInstanceType()
+                .selectBaseInstanceType(engine.getBaseType())
                 .findAccuarteInstanceType()
                 .selectAccurateInstanceType()
                 .enableGPU()
@@ -89,9 +90,9 @@ public class GooglePricingCalculatorSendResultsByEmailTest {
                 .findSSDVolume()
                 .selectSSDVolume()
                 .findLocation()
-                .selectLocation()
+                .selectLocation(engine.getLocation())
                 .findCommittedUsage()
-                .selectCommittedUsage()
+                .selectCommittedUsage(engine.getCommittedUsage())
                 .submitFilledForm()
                 .getMonthlyCost()
                 .switchToNewMailPage()
