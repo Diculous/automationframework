@@ -1,5 +1,6 @@
 package hardcore.page;
 
+import hardcore.util.Sleeper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class GooglePricingCalculatorPage {
 
@@ -30,58 +30,49 @@ public class GooglePricingCalculatorPage {
     @FindBy(xpath = "//b[text()=\"Google Cloud Platform Pricing Calculator\"]")
     private WebElement firstSearchResult;
 
-    @FindBy(id = "input_65")
+    @FindBy(id = "input_66")
     private WebElement instancesField;
 
-    @FindBy(id = "select_90")
+    @FindBy(id = "select_91")
     private WebElement baseInstanceType;
 
-    @FindBy(id = "select_option_190")
-    private WebElement baseInstanceTypeSelect;
-
-    @FindBy(id = "select_92")
+    @FindBy(id = "select_93")
     private WebElement accurateInstanceType;
 
-    @FindBy(id = "select_option_365")
+    @FindBy(id = "select_option_366")
     private WebElement accurateInstanceTypeSelect;
 
     @FindBy(xpath = "//md-checkbox[contains(@aria-label, \"Add GPUs\")]")
     private WebElement enableGPUCheckbox;
 
-    @FindBy(id = "select_399")
+    @FindBy(id = "select_400")
     private WebElement amountOfGPUs;
 
-    @FindBy(id = "select_option_404")
+    @FindBy(id = "select_option_405")
     private WebElement selectAmountOfGPUs;
 
-    @FindBy(id = "select_401")
+    @FindBy(id = "select_402")
     private WebElement typeOfGPUs;
 
-    @FindBy(id = "select_option_411")
+    @FindBy(id = "select_option_412")
     private WebElement selectTypeOfGPUs;
 
-    @FindBy(id = "select_360")
+    @FindBy(id = "select_361")
     private WebElement volumeSSD;
 
-    @FindBy(id = "select_option_386")
+    @FindBy(id = "select_option_387")
     private WebElement selectVolumeSSD;
 
-    @FindBy(id = "select_94")
+    @FindBy(id = "select_95")
     private WebElement location;
 
-    @FindBy(id = "select_option_219")
-    private WebElement selectLocation;
-
-    @FindBy(id = "select_101")
+    @FindBy(id = "select_102")
     private WebElement committedUsage;
-
-    @FindBy(id = "select_option_99")
-    private WebElement selectCommittedUsage;
 
     @FindBy(id = "email_quote")
     private WebElement email;
 
-    @FindBy(id = "input_482")
+    @FindBy(id = "input_483")
     private WebElement emailInput;
 
     @FindBy(xpath = "//button[contains(@aria-label, \"Send Email\")]")
@@ -103,15 +94,12 @@ public class GooglePricingCalculatorPage {
 
     public GooglePricingCalculatorPage fillInstancesAmount(String numberOfInstances) {
         driver.switchTo().frame(0).switchTo().frame(0);
+        Sleeper.timeout(3);
         instancesField.sendKeys(numberOfInstances);
         return this; }
 
     public GooglePricingCalculatorPage findBaseInstanceType() {
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Sleeper.timeout(2);
         waitForElementIsClickable(driver, baseInstanceType).click();
         baseInstanceType.sendKeys(Keys.ARROW_DOWN);
         baseInstanceType.sendKeys(Keys.ARROW_DOWN);
@@ -119,11 +107,7 @@ public class GooglePricingCalculatorPage {
         return this; }
 
     public GooglePricingCalculatorPage selectBaseInstanceType(String baseType) {
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Sleeper.timeout(2);
         WebElement type = driver.findElements(By.xpath("//div[text()[contains(.,'" + baseType + "')]]")).get(0);
         waitForElementIsClickable(driver, type).click();
         return this; }
@@ -205,11 +189,7 @@ public class GooglePricingCalculatorPage {
         return this; }
 
     public GooglePricingCalculatorPage sendEmail() {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Sleeper.timeout(2);
         sendEmail.sendKeys(Keys.ARROW_DOWN);
         waitForElementIsClickable(driver, sendEmail);
         sendEmail.click();
