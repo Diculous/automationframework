@@ -120,7 +120,7 @@ public class GooglePricingCalculatorPage {
     return this; }
 
     public GooglePricingCalculatorPage findAccuarteInstanceType() {
-        accurateInstanceType.click();
+        waitForElementIsClickable(driver,accurateInstanceType).click();
     return this; }
 
     public GooglePricingCalculatorPage selectAccurateInstanceType() {
