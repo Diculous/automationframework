@@ -36,6 +36,9 @@ public class GooglePricingCalculatorPage {
     @FindBy(id = "select_90")
     private WebElement baseInstanceType;
 
+    @FindBy(id = "select_option_190")
+    private WebElement baseInstanceTypeSelect;
+
     @FindBy(id = "select_92")
     private WebElement accurateInstanceType;
 
@@ -66,8 +69,14 @@ public class GooglePricingCalculatorPage {
     @FindBy(id = "select_94")
     private WebElement location;
 
+    @FindBy(id = "select_option_219")
+    private WebElement selectLocation;
+
     @FindBy(id = "select_101")
     private WebElement committedUsage;
+
+    @FindBy(id = "select_option_99")
+    private WebElement selectCommittedUsage;
 
     @FindBy(id = "email_quote")
     private WebElement email;
@@ -90,16 +99,16 @@ public class GooglePricingCalculatorPage {
 
     public GooglePricingCalculatorPage clickOnFirstResult() {
         waitForElementIsClickable(driver, firstSearchResult).click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage fillInstancesAmount(String numberOfInstances) {
         driver.switchTo().frame(0).switchTo().frame(0);
         instancesField.sendKeys(numberOfInstances);
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage findBaseInstanceType() {
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -107,78 +116,78 @@ public class GooglePricingCalculatorPage {
         baseInstanceType.sendKeys(Keys.ARROW_DOWN);
         baseInstanceType.sendKeys(Keys.ARROW_DOWN);
         baseInstanceType.sendKeys(Keys.ARROW_DOWN);
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage selectBaseInstanceType(String baseType) {
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         WebElement type = driver.findElements(By.xpath("//div[text()[contains(.,'" + baseType + "')]]")).get(0);
         waitForElementIsClickable(driver, type).click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage findAccuarteInstanceType() {
-        waitForElementIsClickable(driver,accurateInstanceType).click();
-    return this; }
+        accurateInstanceType.click();
+        return this; }
 
     public GooglePricingCalculatorPage selectAccurateInstanceType() {
         waitForElementIsClickable(driver, accurateInstanceTypeSelect).click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage enableGPU() {
         enableGPUCheckbox.click();
         enableGPUCheckbox.sendKeys(Keys.ARROW_DOWN);
         enableGPUCheckbox.sendKeys(Keys.ARROW_DOWN);
         enableGPUCheckbox.sendKeys(Keys.ARROW_DOWN);
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage findAmountOfGPUs() {
         amountOfGPUs.click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage selectAmountOfGPUs() {
         waitForElementIsClickable(driver, selectAmountOfGPUs).click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage findGPUsType() {
         typeOfGPUs.click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage selectGPUsType() {
         waitForElementIsClickable(driver, selectTypeOfGPUs).click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage findSSDVolume() {
         volumeSSD.click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage selectSSDVolume() {
         waitForElementIsClickable(driver, selectVolumeSSD).click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage findLocation() {
         location.click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage selectLocation(String location) {
         WebElement selectedLocation = driver.findElements(By.xpath("//div[text()[contains(.,'" + location + "')]]")).get(3);
         waitForElementIsClickable(driver, selectedLocation).click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage findCommittedUsage() {
         committedUsage.click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage selectCommittedUsage(String usage) {
         WebElement committed = driver.findElements(By.xpath("//div[text()[contains(.,'" + usage + "')]]")).get(1);
         waitForElementIsClickable(driver, committed).click();
-    return this; }
+        return this; }
 
     public GooglePricingCalculatorPage submitFilledForm() {
         instancesField.submit();
-    return this; }
+        return this; }
 
     public TenMinutesMailPage switchToNewMailPage() {
         driver.switchTo().newWindow(WindowType.TAB);
